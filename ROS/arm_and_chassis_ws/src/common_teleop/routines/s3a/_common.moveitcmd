@@ -1,0 +1,11 @@
+# Arm.
+use arm
+home = [0 0 0]
+nail_basket = [-0.628319 0.226893 -0.872665]
+above_nail_basket = [-0.541052 -0.0872665 -0.0349066]
+
+# Hand.
+use hand
+close_gripper = [0 0]
+open_gripper = [1.2 1.2]
+nail_open_gripper = [0.7 0.7]

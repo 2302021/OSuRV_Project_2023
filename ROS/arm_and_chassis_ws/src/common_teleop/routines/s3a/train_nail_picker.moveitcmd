@@ -1,0 +1,13 @@
+%include _common.moveitcmd
+#use arm
+#go home
+use hand
+go nail_open_gripper
+use arm
+
+front = [0.314159 0.279253 -0.244346]
+reach = [0.296706 0.488692 -0.244346]
+up = [0.296706 0.436332 0 0.698132]
+#%include _fun_nail_pick.moveitcmd
+
+

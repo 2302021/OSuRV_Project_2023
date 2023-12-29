@@ -1,0 +1,20 @@
+MOVEITCMD Documentation:
+
+The routine files pertinent to the arm are situated in the following directory: ROS/arm_and_chassis_ws/src/common_teleop/routines/s3a/
+
+The extension for these files is .moveitcmd.
+
+The syntax for MOVEITCMD is as follows:
+A number is defined as a signed double value.
+A vector is defined as a tuple in the format [<number>, <number>] for 2D vectors or [<number>, <number>, <number>] for 3D vectors.
+An entity is defined as element from the set {hand, arm}.
+'#' denotes a comment. Any text following this character within the same line is disregarded by the interpreter.
+'%include <file>' is a directive that instructs the interpreter to replace the directive with the content of the specified file.
+'<string> = <vector>' is a variable declaration. The variable is not treated as a constant.
+'use <entity>' is a command that switches the control target to the specified entity.
+'go <vector>' is a command that moves the control target to the specified vector.
+'wait <number>' is a command that pauses the execution for a duration specified by the parameter (in seconds).
+
+Each command is confined to a single line.
+
+Files that commence with an underscore ('_') are not utilized as entry points. Instead, they are included in other files.

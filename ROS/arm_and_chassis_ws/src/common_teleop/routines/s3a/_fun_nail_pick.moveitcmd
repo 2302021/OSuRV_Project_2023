@@ -1,0 +1,21 @@
+
+use arm
+go front
+wait 0.5
+go reach
+use hand
+go close_gripper
+use arm
+go up
+go above_nail_basket
+#wait 2
+go nail_basket
+#wait 2
+use hand
+go open_gripper
+wait 0.2
+go nail_open_gripper
+use arm
+go home
+
+use arm
