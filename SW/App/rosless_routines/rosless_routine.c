@@ -137,7 +137,7 @@ int main(int argc, char** argv){
 		}
 		
 		double s0, s1, s2, s3, s0_target, s1_target, s2_target, s3_target;
-		
+
 		s0 = duty_to_angle(duties[0]);
 		s1 = duty_to_angle(duties[1]);
 		s2 = duty_to_angle(duties[2]);
@@ -180,6 +180,14 @@ int main(int argc, char** argv){
     }
 
 	close(fd);
+
+	CommandNode *next;
+	current = commands;
+	while (current != NULL) {
+		next = current->next;
+		free(current);
+		current = next;
+	}
 
 	printf("Routine culminated successfully.\n");
 
