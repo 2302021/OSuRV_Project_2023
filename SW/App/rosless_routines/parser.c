@@ -63,7 +63,7 @@ CommandNode* parse_routine(const char *file_path, char *success)
 	{
 		if (strncmp(line, "%include", 8) == 0)
 		{
-			char included_file[256] = "../../../ROS/arm_and_chassis_ws/src/common_teleop/routines/s3a/";
+			char included_file[256] = ROUTINE_DIR;
 			char success;
 			sscanf(line, "%*s %s", included_file + strlen(included_file));
 			parse_routine(included_file, &success);

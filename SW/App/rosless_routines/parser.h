@@ -1,6 +1,8 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+#define ROUTINE_DIR "../../../ROS/arm_and_chassis_ws/src/common_teleop/routines/s3a/"
+
 enum Entity
 {
 	HAND,
