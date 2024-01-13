@@ -72,7 +72,7 @@ _targets = {
 	'run_drv': [
 		{
 			'app' : '''
-				./build/rosless_routine ../../../ROS/arm_and_chassis_ws/src/common_teleop/routines/s3a/open_gripper.moveitcmd
+				./build/rosless_routine ../../../ROS/arm_and_chassis_ws/src/common_teleop/routines/s3a/demo_nail_picker.moveitcmd
 				''',
 		},
 	],

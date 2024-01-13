@@ -99,8 +99,8 @@ int main(int argc, char** argv){
 
 	uint16_t duties[MOTOR_CLTR__N_SERVO] = {0};
 	
-	int fd;
-	fd = open(DEV_FN, O_RDWR);
+	int fd = 1;
+	//fd = open(DEV_FN, O_RDWR);
 	if(fd < 0){
 		fprintf(stderr, "ERROR: \"%s\" not opened!\n", DEV_FN);
 		fprintf(stderr, "fd = %d %s\n", fd, strerror(-fd));
@@ -109,6 +109,7 @@ int main(int argc, char** argv){
 	
 	
 	if(op == 'w'){
+		fd = open(DEV_FN, O_RDWR);
 		printf("duty = %d\n", duty);
 		duties[servo_idx] = duty; // [permilles]
 		

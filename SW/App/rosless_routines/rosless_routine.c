@@ -95,6 +95,10 @@ void printCommand(Command command) {
     }
 }
 
+#define OPEN open(DEV_FN, O_RDWR)
+#define WRITE (write(fd, (char*)&duties, sizeof(duties)))
+#define WAIT(x) usleep(1000000 * x)
+#define PRINTDUTIES for(size_t i = 0; i < MOTOR_CLTR__N_SERVO; ++i) {printf("duties[%d] = %d, ", i, duties[i]);} printf("\n")
 int main(int argc, char** argv){
 	if (argc < 2) {
         printf("Usage: %s <file_path>\n", argv[0]);
@@ -102,27 +106,49 @@ int main(int argc, char** argv){
     }
 
 	uint16_t duties[MOTOR_CLTR__N_SERVO] = {500, 500, 500, 500}; // we only need to write to the first 4 servos
-
-	int fd;
-	fd = open(DEV_FN, O_RDWR); // change to only write aka O_WRONLY ?
+	int r;
+	int fd = 1;
+	//fd = open(DEV_FN, O_RDWR); // change to only write aka O_WRONLY ?
 	if(fd < 0){
 		fprintf(stderr, "[ERROR] \"%s\" not opened!\n", DEV_FN);
 		fprintf(stderr, "fd = %d %s\n", fd, strerror(-fd));
 		return 4;
 	}
-	
-	for(size_t i = 0; i < MOTOR_CLTR__N_SERVO; i++){
-		printf("duties[%d] = %d, ", i, duties[i]);
-	}
-	printf("\n");
-	
+/*
+	printf("driver open\n");
+	WAIT(2);
+	PRINTDUTIES;
+	WAIT(2);
+	fd = OPEN;
+	duties[0] = 200;
 	ssize_t r;
-	r = write(fd, (char*)&duties, sizeof(duties));
-	if(r != sizeof(duties)){
-		fprintf(stderr, "[ERROR] write went wrong!\n");
-		return 4;
-	}
-
+	r = WRITE;
+	close(fd);
+	printf("First write\n");
+	PRINTDUTIES;
+	WAIT(2);
+	fd = OPEN;
+	duties[0] = 800;
+	r = WRITE;
+	printf("Second write\n");
+	PRINTDUTIES;
+	close(fd);
+	WAIT(2);
+	fd = OPEN;
+	duties[0] = 200;
+	r = WRITE;
+	printf("Third write\n");
+	PRINTDUTIES;
+	close(fd);
+	WAIT(2);
+	fd = OPEN;
+	duties[0] = 800;
+	r = WRITE;
+	printf("Fourth write\n");
+	PRINTDUTIES;
+	close(fd);
+	return -69;
+*/
 	char success;
     CommandNode *commands = parse_routine(argv[1], &success);
     if (!success) {
@@ -155,13 +181,14 @@ int main(int argc, char** argv){
 				duties[3] = angle_to_duty(s3);
 
 				printf("duties[0] = %d, duties[1] = %d, duties[2] = %d, duties[3] = %d\n", duties[0], duties[1], duties[2], duties[3]);
-
+				fd = OPEN;
 				r = write(fd, (char*)&duties, sizeof(duties));
 				if(r != sizeof(duties)){
 					fprintf(stderr, "[ERROR] write went wrong!\n");
 					return 4;
 				}
-
+				close(fd);
+				
 				usleep(T * 1000 * 1000);
 			}
 		}
@@ -173,13 +200,14 @@ int main(int argc, char** argv){
 				duties[3] = angle_to_duty(s3);
 
 				printf("duties[0] = %d, duties[1] = %d, duties[2] = %d, duties[3] = %d\n", duties[0], duties[1], duties[2], duties[3]);
-
+				fd = OPEN;
 				r = write(fd, (char*)&duties, sizeof(duties));
 				if(r != sizeof(duties)){
 					fprintf(stderr, "[ERROR] write went wrong!\n");
 					return 4;
 				}
-
+				close(fd);
+				
 				usleep(T * 1000 * 1000);
 			}
 		}
