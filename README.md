@@ -14,7 +14,7 @@ To build the application, first navigate to the `ROS/arm_and_chasis_ws` director
 After successful compilation, initiate the application with `./tmuxer.py run_drv`. Tmux automatically orchestrates the setup, presenting a pre-typed command in the upper right corner of your terminal. A simple press of Enter seamlessly launches the application.
 
 ## Contributing
-Please read through our contributing guidelines. Included are directions for opening issues, coding standards, and notes on development.
+This is an academic project for educational purposes. We currently do not have specific contributing guidelines. However, if you have any suggestions or feedback, feel free to open an issue.
 
 ## License
 This project is licensed under the MIT License, so it's open for collaboration and use.
