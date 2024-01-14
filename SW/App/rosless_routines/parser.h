@@ -1,6 +1,8 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+#include <stdint.h>
+
 #define ROUTINE_DIR "../../../ROS/arm_and_chassis_ws/src/common_teleop/routines/s3a/"
 
 enum Entity
@@ -18,13 +20,13 @@ enum CommandTypes
 typedef struct Vector
 {
 	double values[3];
-	int length;
+	uint8_t length;
 } Vector;
 
 typedef struct Command
 {
-	char type;
-	char entity;
+	uint8_t type;
+	uint8_t entity;
 	Vector vector;
 } Command;
 
@@ -35,6 +37,6 @@ typedef struct CommandNode
 	struct CommandNode* next;
 } CommandNode;
 
-CommandNode* parse_routine(const char *file_path, char *success);
+CommandNode* parse_routine(const char *file_path, uint8_t *success);
 
 #endif // PARSER_H
