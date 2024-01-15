@@ -21,9 +21,9 @@ one_file_programs = [
 	'rosless_routine.c',
 ]
 
-includes = [
-	'parser.c',
-]
+libs = " parser.c"
+
+includes = []
 
 def options(opt):
 	opt.load('gcc gxx')
@@ -57,7 +57,7 @@ def configure(cfg):
 def build(bld):
 	for s in one_file_programs:
 		p, ext = os.path.splitext(s)
-		s += ' parser.c'
+		s += libs
 		bld.program(
 			target = p,
 			source = s,
