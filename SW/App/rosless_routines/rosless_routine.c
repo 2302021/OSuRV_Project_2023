@@ -101,7 +101,7 @@ void printCommand(Command command) {
     }
 }
 
-int main(int argc, char** argv){
+int main(int argc, char** argv) {
 	ssize_t r;
 	int fd;
 
